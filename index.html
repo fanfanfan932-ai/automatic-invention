@@ -5,47 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#2563eb" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <title>单词拼写练习</title>
+    <title>考研英语词汇训练营</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="app">
-      <h1>单词拼写训练</h1>
-      <p class="subtitle">听中文释义，拼出对应英文单词。</p>
-
-      <section class="card" aria-live="polite">
-        <div class="meta">
-          <span id="progress">第 1 / 1 题</span>
-          <span id="score">得分：0</span>
+      <header class="topbar">
+        <div>
+          <h1>考研英语词汇训练营</h1>
+          <p class="subtitle">学习、拼写、练习、复习、统计一体化</p>
         </div>
+        <div class="actions">
+          <label class="plan-label" for="dailyPlan">每日计划</label>
+          <select id="dailyPlan" aria-label="每日学习计划">
+            <option value="30">30 词</option>
+            <option value="50" selected>50 词</option>
+            <option value="100">100 词</option>
+          </select>
+          <button id="themeToggle" class="secondary">🌙 深色模式</button>
+        </div>
+      </header>
 
-        <p class="prompt-label">中文提示</p>
-        <p id="prompt" class="prompt">加载中...</p>
+      <nav class="tabs" aria-label="功能导航">
+        <button data-tab="study" class="active">单词学习</button>
+        <button data-tab="spelling">拼写训练</button>
+        <button data-tab="quiz">题目训练</button>
+        <button data-tab="review">检查复习</button>
+        <button data-tab="stats">数据统计</button>
+      </nav>
 
-        <label for="answer" class="sr-only">输入英文单词</label>
-        <input
-          id="answer"
-          type="text"
-          autocomplete="off"
-          placeholder="请输入英文单词"
-        />
-
+      <section id="study" class="panel active">
+        <div class="meta-row">
+          <span id="studyProgress">今日进度：0 / 50</span>
+          <span id="wordImportance">重要度：-</span>
+        </div>
+        <article id="wordCard" class="card word-card" tabindex="0" aria-live="polite">
+          <div class="front">
+            <p class="muted">正面（点卡片翻面）</p>
+            <h2 id="cardWord">loading...</h2>
+            <p id="cardPhonetic">/ /</p>
+            <button id="speakBtn" class="secondary">🔊 发音</button>
+          </div>
+          <div class="back">
+            <p class="muted">背面</p>
+            <p id="cardMeaning"></p>
+            <p id="cardPos"></p>
+            <p id="cardCollocation"></p>
+            <p id="cardExample"></p>
+          </div>
+        </article>
         <div class="buttons">
-          <button id="checkBtn">检查拼写</button>
-          <button id="hintBtn" class="secondary">提示</button>
-          <button id="nextBtn" class="secondary" disabled>下一题</button>
+          <button id="markUnknown">陌生</button>
+          <button id="markVague" class="secondary">模糊</button>
+          <button id="markFamiliar" class="secondary">熟悉</button>
+          <button id="markMastered">掌握</button>
+          <button id="favoriteBtn" class="secondary">☆ 收藏</button>
+          <button id="nextStudy" class="secondary">下一个</button>
         </div>
-
-        <p id="message" class="message"></p>
       </section>
 
-      <section class="word-manager">
-        <h2>自定义单词</h2>
-        <form id="addWordForm" class="add-form">
-          <input id="cnInput" type="text" placeholder="中文释义（如：苹果）" required />
-          <input id="enInput" type="text" placeholder="英文单词（如：apple）" required />
-          <button type="submit">添加</button>
-        </form>
+      <section id="spelling" class="panel">
+        <div class="meta-row">
+          <span id="spellingProgress">第 1 / 1 题</span>
+          <span id="spellingScore">得分：0</span>
+        </div>
+        <p class="muted">看中文写英文</p>
+        <p id="spellingPrompt" class="prompt">加载中...</p>
+        <input id="spellingInput" type="text" placeholder="请输入英文单词" autocomplete="off" />
+        <div class="buttons">
+          <button id="checkSpelling">检查拼写</button>
+          <button id="hintSpelling" class="secondary">提示</button>
+          <button id="nextSpelling" class="secondary" disabled>下一题</button>
+        </div>
+        <p id="spellingMessage" class="message"></p>
+      </section>
+
+      <section id="quiz" class="panel">
+        <div class="meta-row">
+          <span id="quizType">模式：释义选择</span>
+          <span id="quizScore">得分：0</span>
+        </div>
+        <p id="quizQuestion" class="prompt">加载中...</p>
+        <div id="quizOptions" class="quiz-options"></div>
+        <div class="buttons">
+          <button id="nextQuiz" class="secondary" disabled>下一题</button>
+          <button id="toggleQuizType" class="secondary">切换题型</button>
+        </div>
+        <p id="quizMessage" class="message"></p>
+      </section>
+
+      <section id="review" class="panel">
+        <h2>智能复习（简化艾宾浩斯）</h2>
+        <p id="reviewSummary">待复习：0 词</p>
+        <ul id="reviewList" class="review-list"></ul>
+      </section>
+
+      <section id="stats" class="panel">
+        <h2>学习数据</h2>
+        <div class="stats-grid">
+          <article class="stat-card"><p>连续打卡</p><h3 id="streakStat">0 天</h3></article>
+          <article class="stat-card"><p>掌握率</p><h3 id="masteryStat">0%</h3></article>
+          <article class="stat-card"><p>错词本</p><h3 id="wrongCountStat">0</h3></article>
+          <article class="stat-card"><p>词库规模</p><h3 id="vocabCountStat">0</h3></article>
+        </div>
+        <p id="trendText" class="muted"></p>
       </section>
     </main>
 
