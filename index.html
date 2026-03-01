@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <title>单词拼写练习</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>单词拼写训练</h1>
+      <p class="subtitle">听中文释义，拼出对应英文单词。</p>
+
+      <section class="card" aria-live="polite">
+        <div class="meta">
+          <span id="progress">第 1 / 1 题</span>
+          <span id="score">得分：0</span>
+        </div>
+
+        <p class="prompt-label">中文提示</p>
+        <p id="prompt" class="prompt">加载中...</p>
+
+        <label for="answer" class="sr-only">输入英文单词</label>
+        <input
+          id="answer"
+          type="text"
+          autocomplete="off"
+          placeholder="请输入英文单词"
+        />
+
+        <div class="buttons">
+          <button id="checkBtn">检查拼写</button>
+          <button id="hintBtn" class="secondary">提示</button>
+          <button id="nextBtn" class="secondary" disabled>下一题</button>
+        </div>
+
+        <p id="message" class="message"></p>
+      </section>
+
+      <section class="word-manager">
+        <h2>自定义单词</h2>
+        <form id="addWordForm" class="add-form">
+          <input id="cnInput" type="text" placeholder="中文释义（如：苹果）" required />
+          <input id="enInput" type="text" placeholder="英文单词（如：apple）" required />
+          <button type="submit">添加</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js").catch(() => {});
+        });
+      }
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>
