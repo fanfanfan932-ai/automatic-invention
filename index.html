@@ -3,49 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="theme-color" content="#1d4ed8" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <title>单词拼写练习</title>
+    <title>蓝色畅想合唱团 App 方案</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="app">
-      <h1>单词拼写训练</h1>
-      <p class="subtitle">听中文释义，拼出对应英文单词。</p>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">产品规划方案 · iOS / Android</p>
+        <h1>蓝色畅想合唱团招生 App</h1>
+        <p class="intro">
+          面向家长、学员与教师的一体化移动应用：聚焦招生转化、品牌展示、教学管理与家校沟通。
+        </p>
+      </header>
 
-      <section class="card" aria-live="polite">
-        <div class="meta">
-          <span id="progress">第 1 / 1 题</span>
-          <span id="score">得分：0</span>
-        </div>
-
-        <p class="prompt-label">中文提示</p>
-        <p id="prompt" class="prompt">加载中...</p>
-
-        <label for="answer" class="sr-only">输入英文单词</label>
-        <input
-          id="answer"
-          type="text"
-          autocomplete="off"
-          placeholder="请输入英文单词"
-        />
-
-        <div class="buttons">
-          <button id="checkBtn">检查拼写</button>
-          <button id="hintBtn" class="secondary">提示</button>
-          <button id="nextBtn" class="secondary" disabled>下一题</button>
-        </div>
-
-        <p id="message" class="message"></p>
+      <section class="card" id="feature-map">
+        <h2>1️⃣ App 产品功能结构图</h2>
+        <div id="moduleGrid" class="module-grid" aria-label="功能结构图"></div>
       </section>
 
-      <section class="word-manager">
-        <h2>自定义单词</h2>
-        <form id="addWordForm" class="add-form">
-          <input id="cnInput" type="text" placeholder="中文释义（如：苹果）" required />
-          <input id="enInput" type="text" placeholder="英文单词（如：apple）" required />
-          <button type="submit">添加</button>
-        </form>
+      <section class="card" id="prototype">
+        <h2>2️⃣ 核心页面原型说明</h2>
+        <div id="prototypeGrid" class="prototype-grid"></div>
+      </section>
+
+      <section class="card" id="architecture">
+        <h2>3️⃣ 技术架构建议</h2>
+        <div id="architectureGrid" class="architecture-grid"></div>
+      </section>
+
+      <section class="card" id="mvp">
+        <h2>4️⃣ MVP 最小可行版本功能清单</h2>
+        <ol id="mvpList" class="mvp-list"></ol>
+      </section>
+
+      <section class="card" id="timeline">
+        <h2>5️⃣ 开发周期评估（时间 & 人员配置）</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>阶段</th>
+              <th>周期</th>
+              <th>关键产出</th>
+              <th>建议人力</th>
+            </tr>
+          </thead>
+          <tbody id="timelineBody"></tbody>
+        </table>
+      </section>
+
+      <section class="card" id="budget">
+        <h2>6️⃣ 预算区间（低配 / 中配 / 高配）</h2>
+        <div id="budgetCards" class="budget-cards"></div>
       </section>
     </main>
 

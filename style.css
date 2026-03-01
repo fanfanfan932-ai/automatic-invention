@@ -1,6 +1,13 @@
 :root {
   color-scheme: light;
-  font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --brand-50: #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-600: #2563eb;
+  --brand-800: #1e3a8a;
+  --text: #0f172a;
+  --muted: #475569;
+  --card: #ffffff;
 }
 
 * {
@@ -9,132 +16,137 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(120deg, #e0f2fe, #f5f3ff);
-  color: #111827;
-  display: grid;
-  place-items: center;
-  padding: 20px;
+  background: radial-gradient(circle at top, var(--brand-100), #f8fafc 45%);
+  color: var(--text);
 }
 
-.app {
-  width: min(720px, 100%);
+.page {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  padding: 28px 18px 44px;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--brand-600), var(--brand-800));
+  color: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 12px 28px rgba(30, 58, 138, 0.25);
+}
+
+.eyebrow {
+  margin: 0;
+  opacity: 0.9;
+  font-weight: 600;
 }
 
 h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+}
+
+.intro {
   margin: 0;
-  font-size: 2rem;
+  max-width: 760px;
+  line-height: 1.7;
 }
 
-.subtitle {
-  margin: 8px 0 20px;
-  color: #374151;
-}
-
-.card,
-.word-manager {
-  background: #fff;
+.card {
+  margin-top: 16px;
+  background: var(--card);
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-.word-manager {
-  margin-top: 16px;
+h2 {
+  margin: 0 0 14px;
+  font-size: 1.28rem;
+  color: var(--brand-800);
 }
 
-.meta {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
-  color: #4b5563;
-  margin-bottom: 12px;
+h3 {
+  margin: 0 0 8px;
+  color: #1e293b;
 }
 
-.prompt-label {
+p,
+li,
+td,
+th {
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+ul,
+ol {
   margin: 0;
-  color: #6b7280;
+  padding-left: 18px;
 }
 
-.prompt {
-  margin: 8px 0 16px;
-  font-size: 1.4rem;
+.module-grid,
+.prototype-grid,
+.architecture-grid,
+.budget-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.module-grid,
+.prototype-grid,
+.budget-cards {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.architecture-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.module-item,
+.proto-item,
+.arch-item,
+.budget-item {
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+th,
+td {
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f8fafc;
+  color: #334155;
+}
+
+.budget-range {
+  margin: 0 0 6px;
+  color: var(--brand-600);
   font-weight: 700;
 }
 
-input {
-  width: 100%;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 1rem;
-}
+@media (max-width: 720px) {
+  .hero,
+  .card {
+    padding: 16px;
+  }
 
-input:focus {
-  outline: 2px solid #93c5fd;
-  border-color: #60a5fa;
-}
-
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-  flex-wrap: wrap;
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  background: #2563eb;
-  color: #fff;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button.secondary {
-  background: #e5e7eb;
-  color: #111827;
-}
-
-button:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
-.message {
-  min-height: 24px;
-  margin-top: 12px;
-  font-weight: 600;
-}
-
-.message.success {
-  color: #15803d;
-}
-
-.message.error {
-  color: #b91c1c;
-}
-
-.add-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 10px;
-}
-
-.sr-only {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-@media (max-width: 680px) {
-  .add-form {
-    grid-template-columns: 1fr;
+  table {
+    display: block;
+    overflow-x: auto;
   }
 }
