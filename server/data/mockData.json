@@ -1,0 +1,27 @@
+{
+  "teachers": [
+    {
+      "id": "t1",
+      "name": "林老师",
+      "role": "合唱总指导",
+      "bio": "中央音乐学院硕士，10年少儿合唱训练经验。"
+    },
+    {
+      "id": "t2",
+      "name": "周老师",
+      "role": "声乐老师",
+      "bio": "擅长启蒙发声与舞台表现训练。"
+    }
+  ],
+  "awards": [
+    "2024 城市青少年合唱展演金奖",
+    "2023 省级童声合唱邀请赛最佳舞台奖",
+    "2022 儿童艺术周最受欢迎节目"
+  ],
+  "gallery": [
+    "https://placehold.co/600x360/1d4ed8/ffffff?text=Blue+Dream+Choir+1",
+    "https://placehold.co/600x360/2563eb/ffffff?text=Blue+Dream+Choir+2",
+    "https://placehold.co/600x360/3b82f6/ffffff?text=Blue+Dream+Choir+3"
+  ],
+  "voiceParts": ["童声高声部", "童声中声部", "童声低声部"]
+}

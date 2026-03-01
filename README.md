@@ -1,53 +1,122 @@
-# 单词拼写训练 App
+# 蓝色畅想合唱团 Demo（Web + App + Server）
 
-一个简单的前端小应用：根据中文提示输入对应的英文单词，适合背单词与拼写练习。
+这是一个用于演示招生流程的可点击原型项目，包含：
 
-## 功能
+- **Web 官网**（React + Vite + Tailwind + React Router）
+- **移动端 App Demo**（React Native + Expo + Expo Router）
+- **Node.js Mock 后端**（Express + 本地 JSON）
 
-- 中文提示 -> 英文拼写输入
-- 即时判断拼写是否正确
-- 显示当前进度和得分
-- 提示功能（显示首字母）
-- 支持添加自定义单词（保存在浏览器 LocalStorage）
-- 支持 PWA 安装（可添加到手机主屏，离线可用）
+## 1) 项目结构
 
-## 本地运行
-
-直接在浏览器打开 `index.html`，或者使用本地静态服务器：
-
-```bash
-python3 -m http.server 8000
+```txt
+automatic-invention/
+├── web/                    # 官网 demo
+│   ├── package.json
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Layout.jsx
+│   │   │   └── SuccessAlert.jsx
+│   │   ├── lib/api.js
+│   │   ├── pages/
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── RegisterPage.jsx
+│   │   │   ├── TrialPage.jsx
+│   │   │   ├── ShowcasePage.jsx
+│   │   │   └── AdminPage.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── tailwind.config.js
+│   └── vite.config.js
+├── app/                    # Expo App demo
+│   ├── package.json
+│   ├── app/
+│   │   ├── _layout.jsx
+│   │   ├── index.jsx
+│   │   ├── register.jsx
+│   │   ├── trial.jsx
+│   │   └── showcase.jsx
+│   └── src/
+│       ├── components/
+│       │   ├── Card.jsx
+│       │   └── InputField.jsx
+│       └── lib/api.js
+└── server/                 # Express mock API
+    ├── package.json
+    ├── index.js
+    └── data/
+        ├── mockData.json
+        └── records.json
 ```
 
-然后访问 `http://localhost:8000`。
+## 2) 一键启动（分步命令）
 
-## 怎么应用在手机上
+> 建议开 3 个终端窗口，分别运行 server / web / app。
 
-### 方式 1：同一 Wi-Fi 局域网访问（最快）
-
-1. 在电脑项目目录运行：
+### 启动后端
 
 ```bash
-python3 -m http.server 8000 --bind 0.0.0.0
+cd server
+npm install
+npm run dev
 ```
 
-2. 查电脑局域网 IP（例如 `192.168.1.10`）。
-3. 手机和电脑连接同一个 Wi-Fi。
-4. 手机浏览器打开：`http://192.168.1.10:8000`。
+默认地址：`http://localhost:3001`
 
-### 方式 2：安装到手机主屏（像 App 一样）
+### 启动 Web
 
-- **Android（Chrome）**：打开网页后点菜单 -> `添加到主屏幕`。
-- **iPhone（Safari）**：点分享按钮 -> `添加到主屏幕`。
+```bash
+cd web
+npm install
+npm run dev
+```
 
-安装后可全屏启动，并且离线时也能打开最近缓存页面。
+默认地址：`http://localhost:5173`
 
-### 方式 3：部署到公网（随时可用）
+### 启动 App（Expo）
 
-你可以把这个静态项目部署到：
+```bash
+cd app
+npm install
+npx expo start
+```
 
-- GitHub Pages
-- Vercel
-- Netlify
+扫码可在手机 Expo Go 中查看，或使用 iOS/Android 模拟器。
 
-部署后用手机直接访问公网链接，再添加到主屏即可。
+## 3) 功能覆盖说明
+
+### Web（完整）
+- 首页：品牌介绍 + 招生按钮 + 试听预约入口
+- 报名页：姓名、年龄、声部、家长手机号，Zod 校验，提交成功反馈
+- 试听预约页：日期 + 时间段 + 家长手机号，提交成功反馈
+- 展示页：师资、演出图片（占位图）、获奖文案（mock）
+- 管理后台：报名列表、预约列表、统计卡片
+
+### App（同步核心流程）
+- 首页、报名、试听预约、展示页面完整可跳转
+- 表单具备 Zod 校验并弹窗提示提交成功
+- 保持蓝色系、儿童友好风格
+
+## 4) 三张关键页面结构说明（文字）
+
+1. **首页（Web/App）**  
+   顶部品牌标题 + 简介文案；中部提供“立即报名”和“预约试听课”主按钮；下方展示演出形象图；引导用户进入招生漏斗。
+
+2. **报名页（Web/App）**  
+   采用卡片式表单，字段为孩子姓名、年龄、声部、家长手机号；底部主操作按钮“提交报名”；提交后显示“报名成功”反馈。
+
+3. **管理后台（Web）**  
+   顶部两张统计卡片（报名人数、预约人数）；下方左右分栏展示报名列表与预约列表；用于管理者快速掌握招生与预约进度。
+
+## 5) Mock 数据和占位资源
+
+- 内容数据：`server/data/mockData.json`
+- 报名和预约数据：`server/data/records.json`
+- 图片：使用 `https://placehold.co` 占位图链接
+
+## 6) 演示流程建议
+
+- Web 流程：**首页 → 报名页 → 提交成功提示 → 返回首页**
+- App 流程：**首页 → 报名页 → 提交成功提示 → 返回首页**
+- 适用于：融资演示、对外招生展示、内部产品讨论原型。

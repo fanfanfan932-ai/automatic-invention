@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.input {
+  @apply w-full rounded-xl border border-blue-200 px-3 py-2 outline-none ring-brand-400 focus:ring;
+}
