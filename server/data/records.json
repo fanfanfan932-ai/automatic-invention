@@ -1,0 +1,22 @@
+{
+  "registrations": [
+    {
+      "id": "r_demo_1",
+      "childName": "小雨",
+      "age": 9,
+      "voicePart": "童声高声部",
+      "parentPhone": "13800138000",
+      "createdAt": "2026-01-05T09:30:00.000Z"
+    }
+  ],
+  "trials": [
+    {
+      "id": "t_demo_1",
+      "childName": "小晨",
+      "date": "2026-03-18",
+      "timeSlot": "18:00-19:00",
+      "parentPhone": "13900139000",
+      "createdAt": "2026-01-06T08:00:00.000Z"
+    }
+  ]
+}
